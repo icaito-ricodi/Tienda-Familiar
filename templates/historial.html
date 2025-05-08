@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Historial de Ventas</h2>
+<table class="table">
+    <tr><th>Fecha</th><th>Producto</th><th>Cantidad</th><th>Total</th></tr>
+    {% for v in ventas %}
+    <tr><td>{{ v.fecha[:10] }}</td><td>{{ v.nombre }}</td><td>{{ v.cantidad }}</td><td>${{ v.total }}</td></tr>
+    {% endfor %}
+</table>
+<h4>Total Ingresado: ${{ total }}</h4>
+{% endblock %}

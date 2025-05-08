@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Registrar Venta</h2>
+<form method="post" class="row g-3">
+    <div class="col-md-6">
+        <select name="producto_id" class="form-select">
+            {% for p in productos %}
+            <option value="{{ p.id }}">{{ p.nombre }} (Stock: {{ p.stock }})</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3">
+        <input type="number" name="cantidad" class="form-control" placeholder="Cantidad" required>
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-success w-100">Vender</button>
+    </div>
+</form>
+{% endblock %}

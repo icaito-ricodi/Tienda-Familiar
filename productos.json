@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "nombre": "Jabon",
+        "precio": 10.0,
+        "stock": 40
+    },
+    {
+        "id": 2,
+        "nombre": "Jamon",
+        "precio": 15.0,
+        "stock": 40
+    },
+    {
+        "id": 3,
+        "nombre": "Queso",
+        "precio": 15.0,
+        "stock": 40
+    }
+]

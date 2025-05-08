@@ -1,0 +1,26 @@
+[
+    {
+        "producto_id": 1,
+        "nombre": "Jabon",
+        "cantidad": 10,
+        "precio_unitario": 10.0,
+        "total": 100.0,
+        "fecha": "2025-05-08T17:11:24.786164"
+    },
+    {
+        "producto_id": 2,
+        "nombre": "Jamon",
+        "cantidad": 10,
+        "precio_unitario": 15.0,
+        "total": 150.0,
+        "fecha": "2025-05-08T17:11:32.322945"
+    },
+    {
+        "producto_id": 3,
+        "nombre": "Queso",
+        "cantidad": 10,
+        "precio_unitario": 15.0,
+        "total": 150.0,
+        "fecha": "2025-05-08T17:11:38.808102"
+    }
+]
