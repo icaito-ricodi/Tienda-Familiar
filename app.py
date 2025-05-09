@@ -1,20 +1,9 @@
-'''
-tienda_web/
-│
-├── app.py
-├── productos.json
-├── ventas.json
-└── templates/
-    ├── base.html
-    ├── index.html
-    ├── productos.html
-    ├── ventas.html
-    └── historial.html
-'''
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 import json
 import os
 from datetime import datetime
+import pandas as pd
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -91,18 +80,10 @@ def historial():
     total = sum(v['total'] for v in ventas)
     return render_template('historial.html', ventas=ventas, total=total)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-    input()
-
-import pandas as pd
-from flask import send_file
-from io import BytesIO
-
 @app.route('/exportar_excel')
 def exportar_excel():
     try:
-        with open('ventas.json', 'r') as f:
+        with open(VENTAS_FILE, 'r') as f:
             ventas = json.load(f)
     except FileNotFoundError:
         ventas = []
@@ -121,6 +102,5 @@ def exportar_excel():
                      download_name='ventas.xlsx',
                      as_attachment=True)
 
-
-    
-
+if __name__ == '__main__':
+    app.run(debug=True)
