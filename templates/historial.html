@@ -10,5 +10,9 @@
 <h4>Total Ingresado: ${{ total }}</h4>
 {% endblock %}
 
+<a href="{{ url_for('exportar_excel') }}" class="btn btn-success" style="margin-top: 20px;">
+    📥 Exportar a Excel
+</a>
+
 <a href="/exportar_excel" class="btn btn-success mb-3">📤 Exportar a Excel</a>
 
