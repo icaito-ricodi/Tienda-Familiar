@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+<!--{% extends "base.html" %}
 {% block content %}
 <h2>Productos</h2>
 <form method="post" class="row g-3">
@@ -14,4 +14,49 @@
     <tr><td>{{ p.id }}</td><td>{{ p.nombre }}</td><td>${{ p.precio }}</td><td>{{ p.stock }}</td></tr>
     {% endfor %}
 </table>
+{% endblock %}-->
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Productos</h2>
+
+<form method="post" class="row g-3">
+    <div class="col-md-4">
+        <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+    </div>
+    <div class="col-md-3">
+        <input type="number" name="precio" class="form-control" placeholder="Precio" step="0.01" required>
+    </div>
+    <div class="col-md-3">
+        <input type="number" name="stock" class="form-control" placeholder="Stock" required>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Agregar</button>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped mt-4">
+    <thead class="table-light">
+        <tr>
+            <th>ID</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in productos %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>${{ "%.2f"|format(p.precio) }}</td>
+            <td>{{ p.stock }}</td>
+            <td>
+                <a href="{{ url_for('editar_producto', producto_id=p.id) }}" class="btn btn-warning btn-sm">✏️ Editar</a>
+                <form action="{{ url_for('eliminar_producto', producto_id=p.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este producto?')">🗑️ Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
+
