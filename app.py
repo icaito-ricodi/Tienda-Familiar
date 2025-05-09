@@ -74,11 +74,23 @@ def ventas():
 
     return render_template('ventas.html', productos=productos)
 
-@app.route('/historial')
+@app.route('/historial', methods=['GET', 'POST'])
 def historial():
     ventas = cargar_datos(VENTAS_FILE)
+
+    fecha_inicio = request.form.get('fecha_inicio')
+    fecha_fin = request.form.get('fecha_fin')
+
+    if fecha_inicio and fecha_fin:
+        ventas = [v for v in ventas if fecha_inicio <= v['fecha'][:10] <= fecha_fin]
+
     total = sum(v['total'] for v in ventas)
     return render_template('historial.html', ventas=ventas, total=total)
+
+@app.route('/limpiar_historial', methods=['POST'])
+def limpiar_historial():
+    guardar_datos(VENTAS_FILE, [])
+    return redirect('/historial')
 
 @app.route('/exportar_excel')
 def exportar_excel():
@@ -104,3 +116,4 @@ def exportar_excel():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
