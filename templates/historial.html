@@ -13,4 +13,11 @@
     📥 Exportar a Excel
 </a>
 
+<form action="{{ url_for('limpiar_historial') }}" method="post" style="display:inline;">
+    <button type="submit" class="btn btn-danger mt-3">
+        🧹 Limpiar Historial
+    </button>
+</form>
+
+
 {% endblock %}
