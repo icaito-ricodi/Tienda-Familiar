@@ -95,5 +95,32 @@ if __name__ == '__main__':
     app.run(debug=True)
     input()
 
+import pandas as pd
+from flask import send_file
+from io import BytesIO
+
+@app.route('/exportar_excel')
+def exportar_excel():
+    try:
+        with open('ventas.json', 'r') as f:
+            ventas = json.load(f)
+    except FileNotFoundError:
+        ventas = []
+
+    if not ventas:
+        return "No hay ventas para exportar", 400
+
+    df = pd.DataFrame(ventas)
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Ventas')
+
+    output.seek(0)
+    return send_file(output,
+                     mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                     download_name='ventas.xlsx',
+                     as_attachment=True)
+
+
     
 
