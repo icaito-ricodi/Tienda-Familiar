@@ -1,6 +1,6 @@
 # 🛒 Tienda Familiar Web
 
-https://tienda-familiar.onrender.com
+Enlace: https://tienda-familiar.onrender.com
 
 Una aplicación web simple para el control de una tienda familiar. Permite gestionar productos, registrar ventas y consultar un historial con ingresos generados.
 
